@@ -1,0 +1,14 @@
+root = true
+
+# My style: normal four-space indents
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+# The relevant CLI tools manipulate these files with 2-space indents
+[{package.json,typings.json}]
+indent_style = space
+indent_size = 2

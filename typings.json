@@ -1,0 +1,12 @@
+{
+  "name": "js-to-ts",
+  "resolution": {
+    "main": "src/typings"
+  },
+  "dependencies": {
+    "lodash": "registry:npm/lodash#4.0.0+20160416211519"
+  },
+  "globalDependencies": {
+    "node": "registry:env/node#6.0.0+20160622202520"
+  }
+}

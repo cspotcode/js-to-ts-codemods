@@ -1,0 +1,26 @@
+{
+  "name": "js-to-ts",
+  "version": "0.0.1",
+  "description": "Transpiles JavaScript projects into TypeScript",
+  "main": "index.js",
+  "typings": "index.d.ts",
+  "bin": {
+    "js-to-ts": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Andrew Bradley",
+    "email": "cspotcode@gmail.com",
+    "url": "https://github.com/cspotcode"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^1.8.10"
+  },
+  "dependencies": {
+    "lodash": "^4.13.1",
+    "source-map-support": "^0.4.0"
+  }
+}

@@ -1,0 +1,12 @@
+# IntelliJ project
+.idea
+# VSCode project
+.vscode
+# Vagrant VM
+.vagrant
+# Compiled code
+bin
+# NPM errors
+npm_debug.log
+# Installed NPM packages
+node_modules
