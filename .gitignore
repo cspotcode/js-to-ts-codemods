@@ -7,6 +7,6 @@
 # Compiled code
 bin
 # NPM errors
-npm_debug.log
+npm-debug.log
 # Installed NPM packages
 node_modules

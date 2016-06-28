@@ -1,1 +1,1 @@
-export * from './bin/index';
+export * from './bin/main/index';
