@@ -1,14 +1,14 @@
 {
   "private": true,
-  "name": "{{project name}}",
+  "name": "js-to-ts",
   "version": "0.0.1",
-  "description": "{{project description}}",
+  "description": "Converts Javascript to Typescript",
   "keywords": [],
-  "homepage": "https://github.com/cspotcode/{{repository name}}",
-  "bugs": "https://github.com/cspotcode/{{repository name}}/issues",
+  "homepage": "https://github.com/cspotcode/js-to-ts",
+  "bugs": "https://github.com/cspotcode/js-to-ts/issues",
   "repository": {
     "type" : "git",
-    "url" : "https://github.com/cspotcode/{{repository name}}.git"
+    "url" : "https://github.com/cspotcode/js-to-ts.git"
   },
   "main": "index.js",
   "typings": "index.d.ts",
