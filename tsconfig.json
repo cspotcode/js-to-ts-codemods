@@ -1,28 +1,11 @@
 {
-  "compileOnSave": true,
+  "extends": "@tsconfig/node14/tsconfig.json",
+  "include": ["src"],
   "compilerOptions": {
-    "target": "es6",
     "rootDir": "src",
-    "outDir": "bin",
+    "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "stripInternal": true,
-    "noEmitHelpers": true,
-    "pretty": true
-  },
-  "exclude": [
-    "node_modules",
-    ".idea",
-    ".vscode",
-    ".vagrant",
-    "src/typings",
-    "bin",
-    "index.js",
-    "index.d.ts"
-  ]
+    "declarationMap": true
+  }
 }

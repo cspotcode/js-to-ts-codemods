@@ -1,7 +1,7 @@
-Stuff to inject into templates:
+jscodeshift codemods to convert JS -> TS, JSDoc annotations into TS annotations.
 
-* {{project name}}
-* {{project description}}
-* {{copyright year}}
-* {{copyright holders}}
-* {{repository name}}
+See also, projects in the same space but which don't handle JSDoc -> TS
+
+- ts-migrate
+- typestat
+- TypeScript's built-in quick-fixes which can generate TS annotations but do not delete the JSDoc

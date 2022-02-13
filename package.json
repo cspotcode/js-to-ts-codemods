@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "js-to-ts",
   "version": "0.0.1",
   "description": "Converts Javascript to Typescript",
@@ -7,12 +6,11 @@
   "homepage": "https://github.com/cspotcode/js-to-ts",
   "bugs": "https://github.com/cspotcode/js-to-ts/issues",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/cspotcode/js-to-ts.git"
+    "type": "git",
+    "url": "https://github.com/cspotcode/js-to-ts-codemods.git"
   },
-  "main": "index.js",
-  "typings": "index.d.ts",
-  "bin": "bin/cli.js",
+  "main": "dist/index",
+  "bin": "dist/bin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,10 +21,9 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^1.8.10"
-  },
-  "dependencies": {
-    "lodash": "^4.13.1",
-    "source-map-support": "^0.4.0"
+    "@tsconfig/node14": "^1.0.1",
+    "@types/node": "^15.12.4",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.2.4"
   }
 }
