@@ -1,11 +1,12 @@
 {
-  "extends": "@tsconfig/node14/tsconfig.json",
-  "include": ["src"],
-  "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist",
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true
-  }
+    "extends": "@tsconfig/node14/tsconfig.json",
+    "include": ["src"],
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "declaration": true,
+        "sourceMap": true,
+        "incremental": true,
+        "declarationMap": true
+    }
 }
