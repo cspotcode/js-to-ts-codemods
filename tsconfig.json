@@ -8,5 +8,8 @@
         "sourceMap": true,
         "incremental": true,
         "declarationMap": true
+    },
+    "ts-node": {
+        "swc": true
     }
 }

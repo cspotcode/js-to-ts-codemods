@@ -1,6 +1,7 @@
 import { Options, API, FileInfo, Program } from 'jscodeshift';
 import { Collection } from 'jscodeshift/src/Collection';
 import { parse as recastTypescriptParse } from 'recast/parsers/typescript';
+import { Project, SourceFile } from 'ts-morph';
 
 export const parser = {
     parse: recastTypescriptParse
@@ -23,6 +24,7 @@ export interface OurTransformerArgs {
     $root: Collection<any>;
     /** root AST node */
     root: Program;
+    sourceFile: SourceFile;
 }
 
 export function wrapTransformer(transformer: OurTransformer) {
@@ -49,7 +51,13 @@ export function wrapTransformer(transformer: OurTransformer) {
             options,
             $root,
             root,
-            j: api.j
+            j: api.j,
+            get sourceFile() {
+                const project = new Project({
+                    useInMemoryFileSystem: true,
+                });
+                return project.createSourceFile("/file.ts", fileInfo.source);
+            }
         });
 
         if(typeof returnedOutput === 'string') {
@@ -66,5 +74,21 @@ export function wrapTransformer(transformer: OurTransformer) {
         }
 
         return $root.toSource();
+    }
+}
+
+repeat.CONTINUE = {} as unknown;
+repeat.BREAK = {} as unknown;
+export function repeat(cb: Function) {
+    while(true) {
+        try {
+            const ret = cb();
+            if(ret === repeat.CONTINUE) continue;
+            if(ret === repeat.BREAK) break;
+        } catch(e) {
+            if(e === repeat.CONTINUE) continue;
+            if(e === repeat.BREAK) break;
+            throw e;
+        }
     }
 }
