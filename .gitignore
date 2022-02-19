@@ -10,3 +10,5 @@ bin
 npm-debug.log
 # Installed NPM packages
 node_modules
+/.yarn
+/test/temp

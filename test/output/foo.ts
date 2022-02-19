@@ -31,6 +31,12 @@ function local() {
 
 }
 
+/**
+ * @template D keep this comment
+ * @param  foo Keep this comment
+ * */
+function jsdocGenerics<A, B, C extends number, D>(bar: B, foo: A, baz: C, biff: D) {}
+
 {
     /**
      * used to declare stuff

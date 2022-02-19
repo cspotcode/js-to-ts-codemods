@@ -56,8 +56,6 @@ export default wrapTransformer(function({j, $root}) {
                     }
                 } else if(j.Identifier.check(right)) {
                     // maybe `exports.foo = bar`?
-                    console.dir(left);
-                    console.dir(topLevelFunctions);
                     const fnDeclaration = topLevelFunctions.get(right.name);
                     if(fnDeclaration) {
                         const exportDeclaration = j.exportNamedDeclaration(fnDeclaration.node);

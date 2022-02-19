@@ -7,9 +7,17 @@
         "declaration": true,
         "sourceMap": true,
         "incremental": true,
-        "declarationMap": true
+        "declarationMap": true,
+        "module": "ESNext",
+        "esModuleInterop": true,
+        "moduleResolution": "node",
     },
     "ts-node": {
-        "swc": true
+        // "swc": true,
+        "transpileOnly": true,
+        "moduleTypes": {
+            "src/transforms/**": "cjs",
+            "src/helpers.ts": "cjs"
+        }
     }
 }

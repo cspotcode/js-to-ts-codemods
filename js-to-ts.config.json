@@ -1,3 +1,16 @@
 {
-    "include": ["examples/**.{ts,js}"]
+    // Can either specify include/exclude arrays
+    "include": ["test/input/**.{ts,js,tsx,js,jsx}"],
+    "exclude": [],
+    // Or can specify a txt list of files, in case you don't want to futz with
+    "filesList": "files-list.txt",
+    "rootDir": "test/input",
+    "outDir": "test/temp",
+    "transforms": [
+        "dos2unix",
+        "tabs-to-spaces",
+        "type-assertions",
+        "jsdoc-to-ts-annotations",
+        "exported-function-declarations"
+    ]
 }

@@ -30,10 +30,14 @@ function local() {
 
 /**
  * @template A,B
- * @param {A} foo
+ * @template {number} C
+ * @template D keep this comment
+ * @param {A} foo Keep this comment
  * @param {B} bar
+ * @param {D} biff
+ * @param {C} baz
  */
-function jsdocGenerics(bar, foo) {}
+function jsdocGenerics(bar, foo, baz, biff) {}
 
 {
     /**
