@@ -13,11 +13,11 @@ export const configSpec = t.isObject({
     transforms: t.isArray(t.isString()),
     rootDir: t.isOptional(t.isString()),
     outDir: t.isOptional(t.isString()),
-    filesList: t.isString()
+    filesList: t.isOptional(t.isString())
 });
 
 export function findAndReadConfig(searchStart: string = process.cwd()) {
-    const configFilePath = findUpSync('js-to-ts.config.json', {
+    const configFilePath = findUpSync(['js-to-ts.config.json', 'js-to-ts.config.jsonc'], {
         cwd: searchStart
     });
     return readConfig(configFilePath!);

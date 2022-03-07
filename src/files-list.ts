@@ -19,6 +19,11 @@ export function createFilesListFromGlobs(config: Config) {
 }
 
 export function readFilesList(config: Config) {
-    const files = readFileSync(resolve(config.configDirname, config.filesList), 'utf8').split('\n').filter(v => v);
-    return files;
+    if(config.filesList) {
+        const files = readFileSync(resolve(config.configDirname, config.filesList), 'utf8').split('\n').filter(v => v);
+        return files;
+    } else {
+        const files = createFilesListFromGlobs(config);
+        return files;
+    }
 }
