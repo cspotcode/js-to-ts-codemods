@@ -4,19 +4,30 @@ Where I'm at:
 
 jsdoc-to-ts-annotations.ts
 Working on the conversion of JSDoc on functions
-- extract @template into <>
-- remove @template tag
-- extract @param {type}
+- [x] extract @template into <>
+- [x] remove @template tag
+- [x] extract @param {type}
 - if param tag has description
-  - strip @param {type} from param tag
+  - [x] strip @param {type} from param tag
 - else
-  - remove entire @param tag
-- extract @return {type}
+  - [x] remove entire @param tag
+- [x] extract @return {type}
 - if return tag has description
-  - strip {type} from it
+  - [x] strip {type} from it
 - else
-  - remove entire tag
-- remove entire jsdoc if it doesn't have anything after our processing
+  - [x] remove entire tag
+- [x] remove entire jsdoc if it doesn't have anything after our processing
+- [x] rewrite @typedef into `type Foo = ` or `interface Foo `
+  - [x] rewrite into `interface` when possible?
+- [x] rewrite `import()` types to refer to an `import` statement
+- [ ] rewrite `var` to `let` or `const`
+  - I already wrote this codemod; find my old code in brain branch
+- [x] rewrite `require()` into `import`
+  - I already wrote this?  Check old brain branch
+  - https://github.com/5to6/5to6-codemod
+- [x] rewrite `this.foo` in exported functions to `foo`, assuming `foo` is a peer export
+- [x] rewrite `exports.foo` into `foo`, assuming `foo` is a peer export
+- [ ] extract leading indent detection logic into helper functions
 
 - support a pre-patch and post-patch
   - patch the codebase before/after codemods.  Useful to augment automated modding with

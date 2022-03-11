@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@swc/core": "^1.2.143",
+    "shell-scripter": "github:cspotcode/node-shell",
+    "ts-node": "^10.5.0",
+    "ts-node-esm": "^0.0.6"
+  }
+}

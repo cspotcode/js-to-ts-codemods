@@ -1,0 +1,137 @@
+{
+  "type": "object",
+  "properties": {
+    "include": {
+      "description": "Globs of files to transform",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exclude": {
+      "description": "Exclude files matching these globs from transformation",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "transforms": {
+      "description": "Run these codemod transformations in this order",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rootDir": {
+      "description": "If paired with outDir, maps files from an input to an output directory",
+      "type": "string"
+    },
+    "outDir": {
+      "description": "see rootDir",
+      "type": "string"
+    },
+    "filesList": {
+      "description": "if specified, path to a text file listing all files to transform, one path per line",
+      "type": "string"
+    },
+    "cloneFrom": {
+      "description": "when creating a codemod proposal, clones code from this repo",
+      "type": "object",
+      "properties": {
+        "remote": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ref",
+        "remote"
+      ]
+    },
+    "pushTo": {
+      "description": "when creating a codemod proposal, pushes reports to this repo",
+      "type": "object",
+      "properties": {
+        "remote": {
+          "type": "string"
+        },
+        "refPrefix": {
+          "type": "string"
+        },
+        "diffViewerTemplate": {
+          "description": "Template with {{revisionA}} and {{revisionB}}",
+          "type": "string"
+        },
+        "treeBrowserTemplate": {
+          "description": "Template with {{revision}}",
+          "type": "string"
+        }
+      }
+    },
+    "prePatch": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "cherryPick": {
+              "type": "object",
+              "properties": {
+                "remote": {
+                  "type": "string"
+                },
+                "range": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "range"
+              ]
+            }
+          },
+          "required": [
+            "cherryPick"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "postPatch": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "cherryPick": {
+              "type": "object",
+              "properties": {
+                "remote": {
+                  "type": "string"
+                },
+                "range": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "range",
+                "remote"
+              ]
+            }
+          },
+          "required": [
+            "cherryPick"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "include"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

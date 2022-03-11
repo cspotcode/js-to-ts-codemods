@@ -1,0 +1,11 @@
+{
+    "extends": "@tsconfig/node14/tsconfig.json",
+    "compilerOptions": {
+        "module": "ESNext",
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+    },
+    "ts-node": {
+        "swc": true
+    }
+}

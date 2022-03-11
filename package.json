@@ -1,6 +1,10 @@
 {
   "name": "js-to-ts",
   "version": "0.0.1",
+  "workspaces": [
+    ".",
+    "codemod-proposer"
+  ],
   "type": "module",
   "description": "Converts Javascript to Typescript",
   "keywords": [],
@@ -29,13 +33,14 @@
     "@types/jscodeshift": "^0.11.3",
     "@types/node": "^15.12.4",
     "ts-expose-internals": "^4.5.5",
-    "ts-node": "^10.5.0",
+    "ts-node": "github:TypeStrong/ts-node#issue-1651",
     "typescript": "^4.3.4"
   },
   "dependencies": {
     "@cspotcode/zx": "^5.0.3",
     "@types/fs-extra": "^9.0.13",
     "@types/lodash": "^4.14.178",
+    "ajv": "^8.10.0",
     "clipanion": "^3.0.0-rc.12",
     "find-up": "^6.3.0",
     "fs-extra": "^10.0.0",
@@ -46,9 +51,11 @@
     "shell-scripter": "github:cspotcode/node-shell",
     "source-map-support": "^0.4.0",
     "strip-json-comments": "^4.0.0",
+    "transform-imports": "^2.1.1",
     "ts-morph": "^13.0.3",
     "ts-node-esm": "github:cspotcode/ts-node-esm",
-    "typanion": "^3.3.1"
+    "typanion": "^3.3.1",
+    "typescript-json-schema": "^0.53.0"
   },
   "packageManager": "yarn@3.1.1"
 }

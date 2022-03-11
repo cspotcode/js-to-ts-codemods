@@ -12,9 +12,11 @@ import _, { sortBy } from 'lodash';
 import {JSDocParameterTag, JSDocReturnTag, JSDocTemplateTag, SyntaxKind, ts, TypeParameterDeclarationStructure} from 'ts-morph';
 import type * as _ts from 'typescript';
 import { parser, repeat, wrapTransformer } from '../helpers';
+import { createJsDocHelpers, Operation } from './helpers/jsdoc';
 export {parser};
 
 export default wrapTransformer(function({sourceFile}) {
+    const {applyOperations, removeJsDoc, removeJsDocTag} = createJsDocHelpers(sourceFile);
     repeat(() => sourceFile.forEachDescendant((node, traversal) => {
         // Transform `/** @type {Foo} */var foo = `
         const varStatement = node.asKind(SyntaxKind.VariableStatement);
@@ -53,9 +55,6 @@ export default wrapTransformer(function({sourceFile}) {
 
                 const templates = (jsDoc.getTags().filter(t => t.getTagName() === 'template') ?? []) as JSDocTemplateTag[];
 
-                // if(templates.length && fn.compilerNode.typeParameters) throw new Error(`not supported: ${sourceFile.getFilePath()}:${fn.getStartLineNumber()}`);
-                // if(templates.length && fn.compilerNode.typeParameters) return repeat.BREAK;
-
                 const typeParamDeclStructures: TypeParameterDeclarationStructure[] = [];
                 for(const template of templates) {
                     for(const typeParam of template.getTypeParameters()) {
@@ -84,68 +83,20 @@ export default wrapTransformer(function({sourceFile}) {
 
                 const returnType = jsDoc.getTags()?.find(t => ['return', 'returns'].includes(t.getTagName())) as JSDocReturnTag;
                 if(returnType && returnType.getTypeExpression()) {
-                    fn.setReturnType(returnType.getTypeExpression()?.getTypeNode().getText()!);
-                    operations.push(removeJsDocTag(jsDoc.compilerNode as _ts.JSDoc, returnType.compilerNode as _ts.JSDocReturnTag, true));
-                    didStuff = true;
+                    if(!fn.getReturnTypeNode()) {
+                        // TODO handle `@returns {*}` -> `any`
+                        fn.setReturnType(returnType.getTypeExpression()?.getTypeNode().getText()!);
+                        didStuff = true;
+                    } else {
+                        operations.push(removeJsDocTag(jsDoc.compilerNode as _ts.JSDoc, returnType.compilerNode as _ts.JSDocReturnTag, true));
+                    }
                 }
 
-                // TODO apply all operations here
                 didStuff = applyOperations(operations) || didStuff;
                 if(didStuff) return repeat.CONTINUE;
             }
         }
     }) || repeat.BREAK);
     return sourceFile.getFullText();
-
-    function applyOperations(operations: Operation[]) {
-        return sortBy(operations, o => -o.start).reduce((a, o) => {
-            return o.doIt() || a;
-        }, false);
-    }
-    interface Operation {
-        start: number;
-        doIt(): boolean;
-    }
-    // TODO refactor to accept ts-morph wrappers
-    function removeJsDocTag(jsDoc: _ts.JSDoc, tag: _ts.JSDocTag, keepComment: boolean) {
-        let start = tag.getStart();
-        let end = tag.getEnd();
-        const hasCommentToKeep = keepComment && tag.comment;
-        let replacement = keepComment && tag.comment as string || '';
-        const paramTag = tag as _ts.JSDocParameterTag;
-        if(tag.kind === ts.SyntaxKind.JSDocTemplateTag && hasCommentToKeep) {
-            const templateTag = tag as _ts.JSDocTemplateTag;
-            // if also has a comment, the only thing we can remove is the constraint
-            start = templateTag.constraint?.getStart() ?? start;
-            end = templateTag.constraint?.getEnd() ?? start;
-            replacement = '';
-        }
-        if(tag.kind === ts.SyntaxKind.JSDocParameterTag && hasCommentToKeep) {
-            const paramTag = tag as _ts.JSDocParameterTag;
-            // if also has a comment, the only thing we can remove is the constraint
-            start = paramTag.typeExpression?.getStart()! ?? start;
-            end = paramTag.typeExpression?.getEnd()! ?? start;
-            replacement = '';
-        }
-        // TODO teach to preserve @param and @template if they have a name
-        // if(sourceFile.getFullText().slice(replaceStart - 3, replaceStart) === ' * ') replaceStart -= 2;
-        function doIt() {
-            if(start !== end || replacement) {
-                sourceFile.replaceText([start, end], replacement);
-                return true;
-            }
-            return false;
-        }
-        return {doIt, start, end, replacement};
-    }
-    function removeJsDoc(jsDoc: _ts.JSDoc, attachedTo: _ts.Node) {
-        const start = jsDoc.getStart();
-        const end = attachedTo.getStart();
-        function doIt() {
-            sourceFile.removeText(start, end);
-            return true;
-        }
-        return {doIt, start, end};
-    }
 });
 

@@ -1,4 +1,5 @@
 {
+    "$schema": "./config.schema.json",
     // Can either specify include/exclude arrays
     "include": ["test/input/**.{ts,js,tsx,js,jsx}"],
     "exclude": [],
@@ -11,6 +12,21 @@
         "tabs-to-spaces",
         "type-assertions",
         "jsdoc-to-ts-annotations",
-        "exported-function-declarations"
-    ]
+        "exported-function-declarations",
+        "jsdoc-typedef",
+        "jsdoc-comment-formatter",
+        "require-to-import",
+        "import-types-to-imports",
+        "remove-js-ext-from-imports",
+        "erroneous-this-referring-to-exports"
+    ],
+    "cloneFrom": {
+        "remote": "https://github.com/cspotcode/js-to-ts-codemods",
+        "ref": "main"
+    },
+    "pushTo": {
+        "remote": "https://github.com/cspotcode/js-to-ts-codemods",
+        "browseTreeTemplate": "https://github.com/cspotcode/js-to-ts-codemods/tree/{{revision}}",
+        "diffViewerTemplate": "https://github.com/cspotcode/js-to-ts-codemods/compare/{{revisionA}}..{{revisionB}}"
+    }
 }

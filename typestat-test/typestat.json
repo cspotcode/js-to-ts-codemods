@@ -4,21 +4,39 @@
             "renameExtensions": true
         },
         "fixes": {
-            "importExtensions": true
+            "importExtensions": true,
+            "incompleteTypes": true,
+            "missingProperties": true,
+            "noImplicitAny": true,
+            "noImplicitThis": true,
+            "noInferableTypes": true,
+            "strictNonNullAssertions": true,
+            "strictNullChecks": true
+        },
+        "types": {
+            "strictNullChecks": true
         },
         "include": [
-            "**/*.js"
+            "input/**/*.{js,ts}"
         ],
         "project": "./tsconfig.json"
     },
     {
         "fixes": {
+            "importExtensions": true,
             "incompleteTypes": true,
             "missingProperties": true,
-            "noImplicitAny": true
+            "noImplicitAny": true,
+            "noImplicitThis": true,
+            "noInferableTypes": true,
+            "strictNonNullAssertions": true,
+            "strictNullChecks": true
+        },
+        "types": {
+            "strictNullChecks": true
         },
         "include": [
-            "**/*.js"
+            "input/**/*.ts"
         ],
         "project": "./tsconfig.json"
     }

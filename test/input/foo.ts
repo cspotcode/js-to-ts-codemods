@@ -36,8 +36,18 @@ function local() {
  * @param {B} bar
  * @param {D} biff
  * @param {C} baz
+ * @return {string} name
  */
 function jsdocGenerics(bar, foo, baz, biff) {}
+
+/**
+ * @returns {string}
+ */
+function _returns() {}
+/**
+ * @return {string}
+ */
+function _return() {}
 
 {
     /**

@@ -11,10 +11,10 @@
         "module": "ESNext",
         "esModuleInterop": true,
         "moduleResolution": "node",
+        "resolveJsonModule": true,
     },
     "ts-node": {
-        // "swc": true,
-        "transpileOnly": true,
+        "swc": true,
         "moduleTypes": {
             "src/transforms/**": "cjs",
             "src/helpers.ts": "cjs"
