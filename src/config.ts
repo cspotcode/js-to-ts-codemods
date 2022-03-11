@@ -52,7 +52,7 @@ export interface CliConfig {
 }
 
 export function findAndReadConfig(searchStart: string = process.cwd()) {
-    const configFilePath = findUpSync('js-to-ts.config.json', {
+    const configFilePath = findUpSync(['js-to-ts.config.json', 'js-to-ts.config.jsonc'], {
         cwd: searchStart
     });
     return readConfig(configFilePath!);

@@ -35,12 +35,14 @@ export default wrapTransformer(function({j, $root}) {
                 if(j.FunctionExpression.check(right)) {
                     const name = left.property.name;
                     if(right.id == undefined || right.id.name === name) {
-                        $statement.replace(j.exportNamedDeclaration(
+                        const replacement = j.exportNamedDeclaration(
                             j.functionDeclaration.from({
                                 id: left.property, params: right.params, body: right.body,
                                 typeParameters: right.typeParameters
                             })
-                        ));
+                        );
+                        replacement.comments = $statement.node.comments;
+                        $statement.replace(replacement);
                     } else {
                         $statement.insertBefore(j.exportNamedDeclaration(
                             null, [j.exportSpecifier.from({
